@@ -14,7 +14,8 @@ import org.junit.runners.Suite.SuiteClasses;
 				com.checkoutsystem.basket.BasketImpl_ProcessProductTest.class,
 				com.checkoutsystem.basket.BasketImpl_addProductTest.class,
 				com.checkoutsystem.basket.BasketImpl_GetTotalTest.class,
-				com.checkoutsystem.print.PrintUtilTest.class})
+				com.checkoutsystem.print.PrintUtilTest.class,
+				com.checkoutsystem.offer.OfferManagerTest.class})
 public class AllTests {
 
 }

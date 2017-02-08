@@ -97,87 +97,99 @@ public class CheckoutSystemTest extends CheckoutSystemBaseClassTest {
 		assertEquals(INVALID_PRODUCT_MESSAAGE_PREFIX_TEST+"prod1\n"+INVALID_PRODUCT_MESSAAGE_PREFIX_TEST+"prod2\n", errContent.toString());
 	}
 
+	// one apple is free
 	@Test
 	public void testOneValidProductRepeadedTwice() {
 		CheckoutSystem.main(new String[]{"apple", "apple"});
+		assertEquals(TOTAL_PREFIX_TEXT_TEST + String.format("%.2f\n",(APPLE_PRICE)/100.0), outContent.toString());
+		assertEquals("", errContent.toString());
+	}
+
+	// one apple is free
+	@Test
+	public void testOneValidProductRepeadedTwiceWithAnotherValidProduct() {
+		CheckoutSystem.main(new String[]{"apple", "apple", "orange"});
+		assertEquals(TOTAL_PREFIX_TEXT_TEST + String.format("%.2f\n",(APPLE_PRICE + ORANGE_PRICE)/100.0), outContent.toString());
+		assertEquals("", errContent.toString());
+	}
+
+	// one apple is free
+	@Test
+	public void testOneValidProductRepeadedTwiceWithAnotherValidProductAndOneInvalidProduct() {
+		CheckoutSystem.main(new String[]{"apple", "apple", "orange", "prod1"});
+		assertEquals(TOTAL_PREFIX_TEXT_TEST + String.format("%.2f\n",(APPLE_PRICE + ORANGE_PRICE)/100.0), outContent.toString());
+		assertEquals(INVALID_PRODUCT_MESSAAGE_PREFIX_TEST+"prod1\n", errContent.toString());
+	}
+
+	// one apple is free
+	@Test
+	public void testOneValidProductRepeadedThrice() {
+		CheckoutSystem.main(new String[]{"apple", "apple", "apple"});
 		assertEquals(TOTAL_PREFIX_TEXT_TEST + String.format("%.2f\n",(APPLE_PRICE + APPLE_PRICE)/100.0), outContent.toString());
 		assertEquals("", errContent.toString());
 	}
 
-	@Test
-	public void testOneValidProductRepeadedTwiceWithAnotherValidProduct() {
-		CheckoutSystem.main(new String[]{"apple", "apple", "orange"});
-		assertEquals(TOTAL_PREFIX_TEXT_TEST + String.format("%.2f\n",(APPLE_PRICE + APPLE_PRICE + ORANGE_PRICE)/100.0), outContent.toString());
-		assertEquals("", errContent.toString());
-	}
-
-	@Test
-	public void testOneValidProductRepeadedTwiceWithAnotherValidProductAndOneInvalidProduct() {
-		CheckoutSystem.main(new String[]{"apple", "apple", "orange", "prod1"});
-		assertEquals(TOTAL_PREFIX_TEXT_TEST + String.format("%.2f\n",(APPLE_PRICE + APPLE_PRICE + ORANGE_PRICE)/100.0), outContent.toString());
-		assertEquals(INVALID_PRODUCT_MESSAAGE_PREFIX_TEST+"prod1\n", errContent.toString());
-	}
-
-	@Test
-	public void testOneValidProductRepeadedThrice() {
-		CheckoutSystem.main(new String[]{"apple", "apple", "apple"});
-		assertEquals(TOTAL_PREFIX_TEXT_TEST + String.format("%.2f\n",(APPLE_PRICE + APPLE_PRICE + APPLE_PRICE)/100.0), outContent.toString());
-		assertEquals("", errContent.toString());
-	}
-
+	// one apple is free
 	@Test
 	public void testOneValidProductRepeadedThriceWithAnotherValidProduct() {
 		CheckoutSystem.main(new String[]{"apple", "apple", "apple", "orange"});
-		assertEquals(TOTAL_PREFIX_TEXT_TEST + String.format("%.2f\n",(APPLE_PRICE + APPLE_PRICE + APPLE_PRICE + ORANGE_PRICE)/100.0), outContent.toString());
+		assertEquals(TOTAL_PREFIX_TEXT_TEST + String.format("%.2f\n",(APPLE_PRICE + APPLE_PRICE + ORANGE_PRICE)/100.0), outContent.toString());
 		assertEquals("", errContent.toString());
 	}
 
+	// one apple is free
 	@Test
 	public void testOneValidProductRepeadedThriceWithAnotherValidProductAndOneInvalidProduct() {
 		CheckoutSystem.main(new String[]{"apple", "apple", "apple", "orange", "prod1"});
-		assertEquals(TOTAL_PREFIX_TEXT_TEST + String.format("%.2f\n",(APPLE_PRICE + APPLE_PRICE + APPLE_PRICE + ORANGE_PRICE)/100.0), outContent.toString());
+		assertEquals(TOTAL_PREFIX_TEXT_TEST + String.format("%.2f\n",(APPLE_PRICE + APPLE_PRICE + ORANGE_PRICE)/100.0), outContent.toString());
 		assertEquals(INVALID_PRODUCT_MESSAAGE_PREFIX_TEST+"prod1\n", errContent.toString());
 	}
 
+	// one apple is free
 	@Test
 	public void testTwoValidProductsRepeadedTwiceEach() {
 		CheckoutSystem.main(new String[]{"apple", "apple", "orange", "orange"});
-		assertEquals(TOTAL_PREFIX_TEXT_TEST + String.format("%.2f\n",(APPLE_PRICE + APPLE_PRICE + ORANGE_PRICE + ORANGE_PRICE)/100.0), outContent.toString());
+		assertEquals(TOTAL_PREFIX_TEXT_TEST + String.format("%.2f\n",(APPLE_PRICE + ORANGE_PRICE + ORANGE_PRICE)/100.0), outContent.toString());
 		assertEquals("", errContent.toString());
 	}
 
+	// one apple is free
 	@Test
 	public void testTwoValidProductsRepeadedTwiceEachWithOneInvalidProduct() {
 		CheckoutSystem.main(new String[]{"apple", "apple", "orange", "orange", "prod1"});
-		assertEquals(TOTAL_PREFIX_TEXT_TEST + String.format("%.2f\n",(APPLE_PRICE + APPLE_PRICE + ORANGE_PRICE + ORANGE_PRICE)/100.0), outContent.toString());
+		assertEquals(TOTAL_PREFIX_TEXT_TEST + String.format("%.2f\n",(APPLE_PRICE + ORANGE_PRICE + ORANGE_PRICE)/100.0), outContent.toString());
 		assertEquals(INVALID_PRODUCT_MESSAAGE_PREFIX_TEST+"prod1\n", errContent.toString());
 	}
 
+	// one apple is free
 	@Test
 	public void testTwoValidProductsRepeadedTwiceEachWithTwoInvalidProducts() {
 		CheckoutSystem.main(new String[]{"apple", "apple", "orange", "orange", "prod1", "prod2"});
-		assertEquals(TOTAL_PREFIX_TEXT_TEST + String.format("%.2f\n",(APPLE_PRICE + APPLE_PRICE + ORANGE_PRICE + ORANGE_PRICE)/100.0), outContent.toString());
+		assertEquals(TOTAL_PREFIX_TEXT_TEST + String.format("%.2f\n",(APPLE_PRICE + ORANGE_PRICE + ORANGE_PRICE)/100.0), outContent.toString());
 		assertEquals(INVALID_PRODUCT_MESSAAGE_PREFIX_TEST+"prod1\n"+INVALID_PRODUCT_MESSAAGE_PREFIX_TEST+"prod2\n", errContent.toString());
 	}
 
+	// 1 apple is free and one orange is free
 	@Test
 	public void testTwoValidProductsRepeadedThriceEach() {
 		CheckoutSystem.main(new String[]{"apple", "apple","apple", "orange", "orange", "orange"});
-		assertEquals(TOTAL_PREFIX_TEXT_TEST + String.format("%.2f\n",(APPLE_PRICE + APPLE_PRICE + APPLE_PRICE + ORANGE_PRICE + ORANGE_PRICE + ORANGE_PRICE)/100.0), outContent.toString());
+		assertEquals(TOTAL_PREFIX_TEXT_TEST + String.format("%.2f\n",(APPLE_PRICE + APPLE_PRICE + ORANGE_PRICE + ORANGE_PRICE)/100.0), outContent.toString());
 		assertEquals("", errContent.toString());
 	}
 
+	// 1 apple is free and one orange is free
 	@Test
 	public void testTwoValidProductsRepeadedThriceEachWithOneInvalidProduct() {
 		CheckoutSystem.main(new String[]{"apple", "apple","apple", "orange", "orange", "orange", "prod1"});
-		assertEquals(TOTAL_PREFIX_TEXT_TEST + String.format("%.2f\n",(APPLE_PRICE + APPLE_PRICE + APPLE_PRICE + ORANGE_PRICE + ORANGE_PRICE + ORANGE_PRICE)/100.0), outContent.toString());
+		assertEquals(TOTAL_PREFIX_TEXT_TEST + String.format("%.2f\n",(APPLE_PRICE + APPLE_PRICE + ORANGE_PRICE + ORANGE_PRICE)/100.0), outContent.toString());
 		assertEquals(INVALID_PRODUCT_MESSAAGE_PREFIX_TEST+"prod1\n", errContent.toString());
 	}
 
+	// 1 apple is free and one orange is free
 	@Test
 	public void testTwoValidProductsRepeadedThriceEachWithTwoInvalidProducts() {
 		CheckoutSystem.main(new String[]{"apple", "apple","apple", "orange", "orange", "orange", "prod1", "prod2"});
-		assertEquals(TOTAL_PREFIX_TEXT_TEST + String.format("%.2f\n",(APPLE_PRICE + APPLE_PRICE + APPLE_PRICE + ORANGE_PRICE + ORANGE_PRICE + ORANGE_PRICE)/100.0), outContent.toString());
+		assertEquals(TOTAL_PREFIX_TEXT_TEST + String.format("%.2f\n",(APPLE_PRICE + APPLE_PRICE + ORANGE_PRICE + ORANGE_PRICE)/100.0), outContent.toString());
 		assertEquals(INVALID_PRODUCT_MESSAAGE_PREFIX_TEST+"prod1\n"+INVALID_PRODUCT_MESSAAGE_PREFIX_TEST+"prod2\n", errContent.toString());
 	}
 
